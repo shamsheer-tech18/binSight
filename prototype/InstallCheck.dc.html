@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Station setup check</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <span style="font-weight: 600; color: #1F1F1F">Installer tool</span>
+      <span style="font-size: 13px; color: #555555">Used by the installer at setup. Not part of the recycling lead's weekly view.</span>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div>
+      <p style="margin: 0; font-size: 13px; color: #555555">Station setup · before any data is used</p>
+      <h1 style="margin: 4px 0 0; font-size: 28px">Station A · Curry Student Center: ready to go live?</h1>
+    </div>
+
+    <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <li style="background: #FFFFFF; border: 1px solid #2F6B4A; border-radius: 8px; padding: 14px"><p style="margin: 0; font-size: 12px; color: #1F4D34; font-weight: 600">STEP 1 · DONE</p><p style="margin: 4px 0 0; font-weight: 600">Module mounted</p><p style="margin: 2px 0 0; font-size: 13px; color: #555555">Clipped under the lid. Bin not altered.</p></li>
+      <li style="background: #FFFFFF; border: 2px solid {{fovBorder}}; border-radius: 8px; padding: 14px"><p style="margin: 0; font-size: 12px; font-weight: 600; color: #333333">STEP 2 · {{fovStep}}</p><p style="margin: 4px 0 0; font-weight: 600">Camera sees only the bin</p><p style="margin: 2px 0 0; font-size: 13px; color: #555555">6 test captures</p></li>
+      <li style="background: #FFFFFF; border: 1px solid #2F6B4A; border-radius: 8px; padding: 14px"><p style="margin: 0; font-size: 12px; color: #1F4D34; font-weight: 600">STEP 3 · PASSED</p><p style="margin: 4px 0 0; font-weight: 600">Accuracy check</p><p style="margin: 2px 0 0; font-size: 13px; color: #555555">93% overall · 90% hard items (needs 90%)</p></li>
+      <li style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 14px"><p style="margin: 0; font-size: 12px; font-weight: 600; color: #333333">STEP 4 · {{approvalStep}}</p><p style="margin: 4px 0 0; font-weight: 600">Approvals</p><p style="margin: 2px 0 0; font-size: 13px; color: #555555">Grounds ✓ · Marketing ✓ · Privacy office</p></li>
+    </ol>
+
+    <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 17px">Step 2 · Field-of-view test: does the camera ever see a person?</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+        <sc-for list="{{caps}}" as="c" hint-placeholder-count="6">
+          <div style="border: 1px solid #D4D4CF; border-radius: 8px; overflow: hidden">
+            <div role="img" aria-label="{{c.alt}}" style="height: 120px; background: #D9D9D5; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #3D3D3D; text-align: center; padding: 0 12px">[ test image: bin interior only ]</div>
+            <div style="padding: 10px 12px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline">
+              <span style="font-size: 14px; font-weight: 600">{{c.name}}</span>
+              <span style="font-size: 13px; font-weight: 600; color: {{c.color}}">{{c.result}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{failed}}" hint-placeholder-val="{{ true }}">
+        <div role="alert" style="border: 2px solid #8A5A00; border-radius: 8px; padding: 16px; display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between">
+          <p style="margin: 0; flex: 1 1 460px">During the bag change, a staff member's hand showed at the edge. <strong>That image was deleted on the module and logged as a fault.</strong> Lower the shield one notch, then test again.</p>
+          <button type="button" onClick="{{retest}}" style="min-height: 44px; padding: 0 20px; border-radius: 6px; border: 0; background: #1F4FB8; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">I adjusted it · re-test</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{passed}}" hint-placeholder-val="{{ false }}">
+        <div style="border: 2px solid #2F6B4A; border-radius: 8px; padding: 16px; display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between">
+          <p style="margin: 0; flex: 1 1 460px"><strong>6 of 6 passed.</strong> No people or hands in any capture. Results and test images are ready for the privacy office.</p>
+          <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{send}}" style="min-height: 44px; padding: 0 20px; border-radius: 6px; border: 0; background: #1F4FB8; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Send to privacy office</button>
+          </sc-if>
+          <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+            <span role="status" style="font-weight: 600; color: #1F4D34">Sent. The station stays on manual audits until approved.</span>
+          </sc-if>
+        </div>
+      </sc-if>
+    </section>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center">
+      <span style="font-size: 14px; color: #3D3D3D">See the hardware:</span>
+      <a href="HardwareModule.dc.html">Module concept</a>
+      <a href="StationNotice.dc.html">Privacy notice at the bin</a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { retested: false, sent: false }; }
+  renderVals() {
+    const r = this.state.retested;
+    const names = ['Lid closed · day', 'Lid open · day', 'Night', 'Low sun glare', 'Bag change by staff', 'Busy lunch hour'];
+    const caps = names.map((n, i) => {
+      const bad = i === 4 && !r;
+      return { name: n, alt: 'Test capture: ' + n, result: bad ? '1 hand at edge' : 'No people', color: bad ? '#7A3A05' : '#1F4D34' };
+    });
+    return {
+      caps, failed: !r, passed: r,
+      sent: this.state.sent, notSent: !this.state.sent,
+      fovStep: r ? 'PASSED' : '1 FAULT', fovBorder: r ? '#2F6B4A' : '#8A5A00',
+      approvalStep: this.state.sent ? 'WAITING' : 'PENDING',
+      retest: () => this.setState({ retested: true }),
+      send: () => this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

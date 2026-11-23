@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BinSight · Prototype screens</title>
+<style>
+  :root { --ink:#1f2a24; --muted:#5f6b64; --line:#dfe5e1; --bg:#f6f8f7; --accent:#1f7a4d; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width:960px; margin:0 auto; padding:48px 24px 64px; }
+  h1 { font-size:28px; margin:0 0 6px; }
+  p.lead { color:var(--muted); margin:0 0 32px; }
+  h2 { font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:32px 0 12px; }
+  ol, ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+  li a { display:flex; gap:16px; align-items:baseline; padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:10px; text-decoration:none; color:inherit; }
+  li a:hover { border-color:var(--accent); }
+  .n { font-weight:700; color:var(--accent); min-width:28px; }
+  .t { font-weight:600; min-width:200px; }
+  .d { color:var(--muted); font-size:14px; }
+  footer { margin-top:40px; font-size:13px; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>BinSight prototype</h1>
+  <p class="lead">Clickable prototype for the campus recycling lead (Marcus). Sample data · Today is Mon Nov 23, 2026 · Latest week Sun Nov 15 – Sat Nov 21.</p>
+
+  <h2>Main path — from finding to proof</h2>
+  <ol>
+    <li><a href="Main.dc.html"><span class="n">1</span><span class="t">Overview</span><span class="d">What needs me this week? Priorities and all stations.</span></a></li>
+    <li><a href="StationDetail.dc.html"><span class="n">2</span><span class="t">Station detail (A)</span><span class="d">What is going wrong at Curry Student Center?</span></a></li>
+    <li><a href="Recommendation.dc.html"><span class="n">3</span><span class="t">Recommendation</span><span class="d">One fix, its evidence, runner-up, owner.</span></a></li>
+    <li><a href="LogChange.dc.html"><span class="n">4</span><span class="t">Change log</span><span class="d">Record the change; future dates refused; overlap warning.</span></a></li>
+    <li><a href="ResultImproved.dc.html"><span class="n">5</span><span class="t">Result — improved (C)</span><span class="d">Did my fix work? Changed vs comparison station.</span></a></li>
+    <li><a href="Summary.dc.html"><span class="n">6</span><span class="t">Summary</span><span class="d">Monthly report for the University Waste Management Office team.</span></a></li>
+  </ol>
+
+  <h2>When something goes wrong</h2>
+  <ul>
+    <li><a href="LowConfidence.dc.html"><span class="n">E1</span><span class="t">Low confidence (B)</span><span class="d">Sensor unsure — numbers hidden, no recommendation.</span></a></li>
+    <li><a href="Offline.dc.html"><span class="n">E2</span><span class="t">Station offline (D)</span><span class="d">“No data”, never 0%.</span></a></li>
+    <li><a href="ResultNoChange.dc.html"><span class="n">E3</span><span class="t">Result — no real change (B)</span><span class="d">Fix didn't help; suggests a different type of fix.</span></a></li>
+  </ul>
+
+  <h2>Off Marcus's path</h2>
+  <ul>
+    <li><a href="InstallCheck.dc.html"><span class="n">S1</span><span class="t">Install check</span><span class="d">Installer tool: camera sees only the bin.</span></a></li>
+    <li><a href="HardwareModule.dc.html"><span class="n">S2</span><span class="t">Hardware module</span><span class="d">The clip-in camera module.</span></a></li>
+    <li><a href="StationNotice.dc.html"><span class="n">S3</span><span class="t">Station notice</span><span class="d">The only thing people at the bin see.</span></a></li>
+  </ul>
+
+  <footer>Each screen runs on its own through <code>support.js</code>. Serve this folder with any static server (see the README).</footer>
+</main>
+</body>
+</html>

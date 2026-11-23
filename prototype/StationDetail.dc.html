@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Station A detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+.btn,.btn:hover{color:#fff}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" style="text-decoration: none">Overview</a>
+      <a href="LogChange.dc.html" style="text-decoration: none">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <a href="Main.dc.html" style="font-size: 14px">← Back to overview</a>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between">
+      <div>
+        <p style="margin: 0; font-size: 13px; color: #555555">Pilot station · outdoor · solar compacting recycling unit, no trash bin beside it</p>
+        <h1 style="margin: 4px 0 0; font-size: 28px">Station A · Curry Student Center</h1>
+      </div>
+      <span style="font-size: 13px; padding: 6px 10px; border: 1px solid #2F6B4A; background: #E6F0EA; color: #1F4D34; border-radius: 4px">Sensor checked Nov 1: 93% correct overall, 90% on hard items. OK to use.</span>
+    </div>
+
+    <section aria-label="Key numbers" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border: 1px dashed #6B6B6B; border-radius: 8px; padding: 18px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Sensor · count · this week</p>
+        <p style="margin: 6px 0 0; font-size: 34px; font-weight: 700">38%</p>
+        <p style="margin: 2px 0 0; color: #3D3D3D; font-size: 14px">of 412 items went in the wrong bin. Up from 31% the week before.</p>
+      </div>
+      <div style="background: #FFFFFF; border: 2px solid #1F1F1F; border-radius: 8px; padding: 18px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Audit · weight · Nov 1</p>
+        <p style="margin: 6px 0 0; font-size: 34px; font-weight: 700">46%</p>
+        <p style="margin: 2px 0 0; color: #3D3D3D; font-size: 14px">of recycling by weight was contaminated. Baseline Sep 1: 44%.</p>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Left out of the count</p>
+        <p style="margin: 6px 0 0; font-size: 34px; font-weight: 700">29 + 23</p>
+        <p style="margin: 2px 0 0; color: #3D3D3D; font-size: 14px">29 uncertain readings (7%). 23 whole bags dumped at once, logged as mixed-bag events.</p>
+      </div>
+    </section>
+
+    <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 17px">Top problem items this week</h2>
+        <sc-for list="{{items}}" as="it" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px"><span>{{it.label}}</span><strong>{{it.pct}}</strong></div>
+            <div style="height: 10px; background: #EAEAE6; border-radius: 5px"><div style="height: 10px; background: #6B6B6B; border-radius: 5px; width: {{it.w}}"></div></div>
+          </div>
+        </sc-for>
+        <p style="margin: 0; font-size: 13px; color: #555555">(Share of wrong-bin items. Sensor, count-based)</p>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 17px">When it happens (weekdays)</h2>
+        <div role="img" aria-label="Wrong-bin items by hour. Peak between 12 and 2 pm." style="display: flex; align-items: flex-end; gap: 8px; height: 150px; border-bottom: 1px solid #8A8A8A; padding: 0 4px">
+          <sc-for list="{{hours}}" as="h" hint-placeholder-count="10">
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%">
+              <div style="width: 100%; background: {{h.c}}; height: {{h.v}}; border-radius: 3px 3px 0 0"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 8px; padding: 0 4px; font-size: 11px; color: #555555">
+          <sc-for list="{{hours}}" as="h" hint-placeholder-count="10"><span style="flex: 1; text-align: center">{{h.t}}</span></sc-for>
+        </div>
+        <p style="margin: 0; font-size: 14px"><strong>Peak: 12–2 pm</strong>, the lunch rush from the Curry food court.</p>
+      </div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 2px solid #1F4FB8; border-radius: 8px; padding: 20px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between">
+      <div style="flex: 1 1 520px">
+        <p style="margin: 0; font-size: 12px; font-weight: 600; color: #163A87">1 RECOMMENDED CHANGE · OPEN 2 DAYS</p>
+        <p style="margin: 4px 0 0; font-size: 18px; font-weight: 600">Put a trash bin right next to the Big Belly</p>
+        <p style="margin: 4px 0 0; color: #3D3D3D">Most wrong items are trash going into recycling, and there is no trash bin nearby.</p>
+      </div>
+      <a class="btn" href="Recommendation.dc.html" style="padding: 12px 18px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">See why, and decide</a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const items = [
+      { label: 'Food wrappers and napkins in recycling', pct: '41%' },
+      { label: 'Cups with liquid still inside', pct: '18%' },
+      { label: 'Food-soiled containers', pct: '14%' },
+      { label: 'Plastic bags', pct: '9%' },
+      { label: 'Other', pct: '18%' }
+    ].map((i) => ({ ...i, w: i.pct }));
+    const raw = [['8a',10],['9a',14],['10a',18],['11a',35],['12p',88],['1p',100],['2p',52],['3p',30],['4p',26],['5p',33]];
+    const hours = raw.map(([t, v]) => ({ t, v: v + '%', c: v >= 80 ? '#1F1F1F' : '#9A9A9A' }));
+    return { items, hours };
+  }
+}
+</script>
+</body>
+</html>

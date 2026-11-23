@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Result for Station C</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+.btn,.btn:hover{color:#fff}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" style="text-decoration: none">Overview</a>
+      <a href="LogChange.dc.html" style="text-decoration: none">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <a href="Main.dc.html" style="font-size: 14px">← Back to overview</a>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between">
+      <div>
+        <p style="margin: 0; font-size: 13px; color: #555555">Result · Station C · Centennial Walkway · change made Sep 15</p>
+        <h1 style="margin: 4px 0 0; font-size: 28px">Pairing a trash bin worked here</h1>
+        <p style="margin: 6px 0 0; color: #3D3D3D">Contamination fell 35% and held at both monthly audits. The unchanged comparison station fell only 4%.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end">
+        <span style="font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: #E6F0EA; color: #1F4D34; border: 1px solid #2F6B4A">Improved · held</span>
+        <span style="font-size: 13px; color: #3D3D3D">Confidence: <strong>moderate</strong> (1 station, 2 audits)</span>
+      </div>
+    </div>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 17px">Recycling contamination by weight (audits)</h2>
+        <div style="display: flex; gap: 20px; font-size: 13px; flex-wrap: wrap">
+          <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; background: #1F1F1F; display: inline-block"></span>Station C (changed)</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; background: #FFFFFF; border: 2px dashed #6B6B6B; box-sizing: border-box; display: inline-block"></span>Station D (comparison, no change)</span>
+        </div>
+        <div role="img" aria-label="Station C: 48% at baseline, 33% at follow-up 1, 31% at follow-up 2. Station D: 45%, 44%, 43%." style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: end; height: 240px; border-bottom: 1px solid #8A8A8A; padding: 0 8px">
+          <sc-for list="{{audits}}" as="a" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px; align-items: flex-end; justify-content: center; height: 100%">
+              <div style="width: 56px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 4px"><strong style="font-size: 14px">{{a.c}}%</strong><div style="width: 100%; background: #1F1F1F; height: {{a.ch}}"></div></div>
+              <div style="width: 56px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 4px"><span style="font-size: 14px">{{a.d}}%</span><div style="width: 100%; border: 2px dashed #6B6B6B; border-bottom: 0; box-sizing: border-box; height: {{a.dh}}"></div></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 0 8px; font-size: 13px; color: #3D3D3D; text-align: center">
+          <sc-for list="{{audits}}" as="a" hint-placeholder-count="3"><span><strong>{{a.label}}</strong><br>{{a.date}}</span></sc-for>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #555555">Same audit method and time window at both stations. Follow-up 2 sample: 38 kg (minimum 25 kg).</p>
+      </div>
+
+      <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px">
+          <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Guardrail: recyclables in trash</p>
+          <p style="margin: 6px 0 0"><strong>21% → 20%.</strong> Did not rise, so recyclables were not just pushed into the trash.</p>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px">
+          <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Also happened in this period</p>
+          <ul style="margin: 6px 0 0; padding-left: 18px; font-size: 14px"><li>Homecoming weekend, Oct 16–18</li><li>Midterms, Oct 19–23</li></ul>
+          <p style="margin: 6px 0 0; font-size: 13px; color: #555555">These affected both stations, so the comparison still holds.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-size: 17px">What BinSight learned</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; font-size: 14px">
+        <div><p style="margin: 0; color: #555555; font-size: 12px">EVIDENCE</p><p style="margin: 2px 0 0">61% of wrong items were trash in recycling; no trash bin in reach</p></div>
+        <div><p style="margin: 0; color: #555555; font-size: 12px">CHOSEN</p><p style="margin: 2px 0 0">Pair a trash bin</p></div>
+        <div><p style="margin: 0; color: #555555; font-size: 12px">RUNNER-UP</p><p style="margin: 2px 0 0">Move bin to the path people reach first</p></div>
+        <div><p style="margin: 0; color: #555555; font-size: 12px">VERIFIED</p><p style="margin: 2px 0 0">Yes, held at 2 audits</p></div>
+      </div>
+      <p style="margin: 4px 0 0; font-size: 13px; color: #555555">This record now supports the same recommendation at stations with a similar pattern, like Station A.</p>
+    </section>
+
+    <section style="display: flex; gap: 12px; flex-wrap: wrap">
+      <a class="btn" href="Summary.dc.html" style="padding: 12px 20px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Add to monthly report</a>
+      <a href="Recommendation.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Use this at Station A</a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const rows = [['Baseline', 'Sep 1', 48, 45], ['Follow-up 1', 'Oct 1', 33, 44], ['Follow-up 2', 'Nov 1', 31, 43]];
+    const audits = rows.map(([label, date, c, d]) => ({ label, date, c, d, ch: (c / 55 * 85) + '%', dh: (d / 55 * 85) + '%' }));
+    return { audits };
+  }
+}
+</script>
+</body>
+</html>

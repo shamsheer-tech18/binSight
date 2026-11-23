@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Recommended change for Station A</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+.btn,.btn:hover{color:#fff}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" style="text-decoration: none">Overview</a>
+      <a href="LogChange.dc.html" style="text-decoration: none">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+      <a href="StationDetail.dc.html" style="font-size: 14px">← Back to Station A</a>
+      <div>
+        <p style="margin: 0; font-size: 13px; color: #555555">Recommended change · Station A · open 2 days</p>
+        <h1 style="margin: 4px 0 0; font-size: 28px">Put a trash bin right next to the Big Belly</h1>
+        <p style="margin: 8px 0 0; color: #3D3D3D">Pairing gives people a trash option at the same spot, so trash stops going into recycling.</p>
+      </div>
+
+      <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 17px">Why this change</h2>
+        <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px">
+          <li><strong>64%</strong> of wrong-bin items are trash in recycling: wrappers, napkins, plastic bags. <span style="font-size: 12px; border: 1px dashed #6B6B6B; padding: 1px 6px; border-radius: 3px">Sensor · 5 weeks</span></li>
+          <li>The nearest trash bin is <strong>about 25 m away</strong>. <span style="font-size: 12px; border: 1px solid #1F1F1F; padding: 1px 6px; border-radius: 3px">Site visit</span></li>
+          <li>Mistakes peak at <strong>12–2 pm</strong>, when people leave the food court with mixed trash.</li>
+          <li><strong>Worked before:</strong> the same change at Station C cut contamination by 35%; the comparison station fell 4%. <a href="ResultImproved.dc.html" style="white-space: nowrap">See Station C →</a></li>
+        </ul>
+        <p style="margin: 0; font-size: 13px; color: #555555">Confidence: <strong>moderate</strong>. Strong signal here, but only 1 earlier result to learn from.</p>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 17px">Other options considered</h2>
+        <div style="display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap"><span style="font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #EDEDED">Runner-up</span><span><strong>Move the Big Belly 10 m onto the food-court exit path.</strong> Weaker: 1 of 3 signals supports it.</span></div>
+        <div style="display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap"><span style="font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #EDEDED">3rd</span><span><strong>Add a sign for cups with liquid.</strong> Cups are only 18% of mistakes, and signs did not help at Station B.</span></div>
+      </section>
+
+      <sc-if value="{{isNone}}" hint-placeholder-val="{{ true }}">
+        <section style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a class="btn" href="LogChange.dc.html" style="padding: 12px 20px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Accept and plan this change</a>
+          <button type="button" onClick="{{showRunner}}" style="min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #1F4FB8; background: #FFFFFF; color: #1F4FB8; font-weight: 600; font-size: 14px; cursor: pointer">I disagree, choose another option</button>
+          <button type="button" onClick="{{showDismiss}}" style="min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #8A8A8A; background: #FFFFFF; color: #333333; font-weight: 600; font-size: 14px; cursor: pointer">This can't be done</button>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isRunner}}" hint-placeholder-val="{{ false }}">
+        <section style="background: #FFFFFF; border: 2px solid #1F4FB8; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 17px">Choose a different change</h2>
+          <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+            <legend style="font-weight: 600; margin-bottom: 6px">Which change will you make instead?</legend>
+            <label style="display: flex; gap: 8px; align-items: center"><input type="radio" name="alt" checked> Move the Big Belly onto the exit path (runner-up)</label>
+            <label style="display: flex; gap: 8px; align-items: center"><input type="radio" name="alt"> Add a sign for cups with liquid</label>
+            <label style="display: flex; gap: 8px; align-items: center"><input type="radio" name="alt"> Something else</label>
+          </fieldset>
+          <label for="why" style="font-weight: 600">Why? (helps BinSight learn)</label>
+          <textarea id="why" rows="2" style="font: inherit; padding: 8px; border: 1px solid #8A8A8A; border-radius: 6px">Grounds says the space next to the Big Belly is a fire lane.</textarea>
+          <p style="margin: 0; font-size: 13px; color: #555555">Your choice, the runner-up and your reason are saved with the result, so future recommendations improve.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <a class="btn" href="LogChange.dc.html" style="padding: 12px 20px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Plan this change instead</a>
+            <button type="button" onClick="{{reset}}" style="min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #8A8A8A; background: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Cancel</button>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isDismiss}}" hint-placeholder-val="{{ false }}">
+        <section style="background: #FFFFFF; border: 2px solid #8A5A00; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 17px">Dismiss this recommendation</h2>
+          <label for="reason" style="font-weight: 600">Reason</label>
+          <select id="reason" style="font: inherit; min-height: 44px; padding: 0 8px; border: 1px solid #8A8A8A; border-radius: 6px; max-width: 420px">
+            <option>Grounds can't make this change</option>
+            <option>No budget this semester</option>
+            <option>Needs Marketing approval first</option>
+            <option>I don't trust the data here</option>
+          </select>
+          <div style="background: #F4F4F2; border-radius: 6px; padding: 14px">
+            <p style="margin: 0; font-size: 12px; font-weight: 600; color: #555555">NEXT BEST OPTION</p>
+            <p style="margin: 4px 0 0"><strong>Move the Big Belly 10 m onto the food-court exit path.</strong> Evidence is weaker (1 of 3 signals).</p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <a class="btn" href="LogChange.dc.html" style="padding: 12px 20px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Plan the next option</a>
+            <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #8A8A8A; text-decoration: none; color: #333333; font-weight: 600; font-size: 14px">Dismiss and decide later</a>
+            <button type="button" onClick="{{reset}}" style="min-height: 44px; padding: 0 18px; border-radius: 6px; border: 0; background: transparent; color: #1F4FB8; font-weight: 600; font-size: 14px; cursor: pointer">Cancel</button>
+          </div>
+        </section>
+      </sc-if>
+    </div>
+
+    <aside aria-label="Owner and timing" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; margin-top: 40px">
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Owner</p>
+        <p style="margin: 0; font-weight: 600">Grounds · area supervisor</p>
+        <p style="margin: 0; font-size: 13px; color: #555555">Grounds owns outdoor bins. Marketing &amp; Communications approval not needed for a matching bin.</p>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">How it will be checked</p>
+        <p style="margin: 0">Weighed audits at Station A and comparison Station D, before and after the change.</p>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">One change at a time</p>
+        <p style="margin: 0; font-size: 14px">Station A has no other change being measured, so the result can be tied to this one.</p>
+      </div>
+    </aside>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { mode: 'none' }; }
+  renderVals() {
+    const m = this.state.mode;
+    return {
+      isNone: m === 'none', isRunner: m === 'runner', isDismiss: m === 'dismiss',
+      showRunner: () => this.setState({ mode: 'runner' }),
+      showDismiss: () => this.setState({ mode: 'dismiss' }),
+      reset: () => this.setState({ mode: 'none' })
+    };
+  }
+}
+</script>
+</body>
+</html>

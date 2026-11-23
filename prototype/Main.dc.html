@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Weekly overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+.btn,.btn:hover{color:#fff}
+.btn2:hover{color:#163A87}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" aria-current="page" style="font-weight: 600; text-decoration: none; color: #1F1F1F; border-bottom: 2px solid #1F1F1F; padding-bottom: 2px">Overview</a>
+      <a href="LogChange.dc.html" style="text-decoration: none">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-start; justify-content: space-between">
+      <div>
+        <div style="position: relative; display: inline-block">
+          <button type="button" onClick="{{toggleCal}}" aria-haspopup="listbox" aria-expanded="{{calOpen}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 2px; border: 0; background: transparent; color: #1F4FB8; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F4FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path><path d="M7.5 13h1M11.5 13h1M15.5 13h1M7.5 16.5h1M11.5 16.5h1M15.5 16.5h1"></path></svg>
+            <span>{{rangeLabel}}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F4FB8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <sc-if value="{{calOpen}}" hint-placeholder-val="{{ false }}">
+            <div role="listbox" aria-label="Date range" style="position: absolute; top: 44px; left: 0; z-index: 10; width: 300px; background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 2px">
+              <sc-for list="{{ranges}}" as="r" hint-placeholder-count="4">
+                <button type="button" role="option" aria-selected="{{r.selected}}" onClick="{{r.pick}}" style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: {{r.bg}}; color: #1F1F1F; font-family: inherit; font-size: 14px; font-weight: {{r.weight}}; text-align: left; cursor: pointer"><span>{{r.name}}</span><span style="font-size: 12px; color: #555555">{{r.dates}}</span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <h1 style="margin: 6px 0 0; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em">{{heading}}</h1>
+        <p style="margin: 10px 0 0; font-size: 16px; color: #3D3D3D">{{subline}}</p>
+      </div>
+      <div aria-label="How to read the numbers" style="display: grid; grid-template-columns: auto auto; gap: 10px 12px; align-items: center; padding-left: 20px; border-left: 1px solid #D4D4CF; font-size: 13px">
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px dashed #6B6B6B; border-radius: 4px; background: #FFFFFF; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M7 12h10"></path></svg>Sensor · count</span>
+        <span style="color: #555555">Where to look</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 2px solid #1F1F1F; border-radius: 4px; background: #FFFFFF; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"></path></svg>Audit · weight</span>
+        <span style="color: #555555">Official result</span>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: #555555">WEEKLY PRIORITIES</span>
+      <span style="flex: 1; height: 1px; background: #D4D4CF"></span>
+    </div>
+
+    <section aria-label="Weekly priorities" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+      <div style="background: #EEF3FC; border: 1px solid #9DB6E8; border-radius: 10px; padding: 24px; display: flex; gap: 16px; align-items: center">
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #DCE6F8; color: #163A87"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#163A87" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Needs a decision</span>
+          </div>
+          <p style="margin: 6px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #3D3D3D">STATION A</p>
+          <h2 style="margin: 0; font-size: 26px; letter-spacing: -0.01em">Curry Student Center</h2>
+          <p style="margin: 0; color: #3D3D3D">Wrong-bin items rose from 31% to 38% this week. One change is recommended.</p>
+          <a class="btn" href="StationDetail.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 12px 18px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Review Station A <span aria-hidden="true">→</span></a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px; align-self: stretch">
+          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #555555"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555555" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Open 2 days</span>
+          <svg width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Illustration of a solar compacting recycling bin">
+            <path d="M48 40 L90 26 L118 36 L76 50 Z" fill="#C9D6F0" stroke="#3D4A66" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M54 40 L88 29 L110 37 L76 48 Z" fill="none" stroke="#3D4A66" stroke-width="1"></path>
+            <path d="M66 36 L98 32 M60 38 L104 34" stroke="#3D4A66" stroke-width="0.8"></path>
+            <path d="M48 40 L76 50 L76 132 L48 122 Z" fill="#DFE7F7" stroke="#3D4A66" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M76 50 L118 36 L118 118 L76 132 Z" fill="#B7C7EA" stroke="#3D4A66" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M84 58 L110 49 L110 62 L84 71 Z" fill="#2B3550" stroke="#3D4A66" stroke-width="1.2"></path>
+            <circle cx="97" cy="92" r="7" fill="none" stroke="#3D4A66" stroke-width="1.2"></circle>
+            <path d="M94 92 l2 -3 l2 3 M99 94 l-2 2 l-2 -2" fill="none" stroke="#3D4A66" stroke-width="1"></path>
+            <path d="M40 136 L52 132 M112 128 L124 124" stroke="#9AA6BF" stroke-width="1"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div style="background: #EEF5F0; border: 1px solid #A9C9B5; border-radius: 10px; padding: 24px; display: flex; gap: 16px; align-items: center">
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #DCEBE1; color: #1F4D34"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1F4D34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Result ready</span>
+          </div>
+          <p style="margin: 6px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #3D3D3D">STATION C</p>
+          <h2 style="margin: 0; font-size: 26px; letter-spacing: -0.01em">Centennial Walkway</h2>
+          <p style="margin: 0; color: #3D3D3D">Pairing a trash bin cut contamination by 35%. The improvement held at two monthly audits.</p>
+          <a class="btn2" href="ResultImproved.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 11px 17px; border-radius: 6px; border: 1px solid #1F4FB8; background: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 14px">View Station C result <span aria-hidden="true">→</span></a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px; align-self: stretch">
+          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #555555"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555555" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Audit verified</span>
+          <svg width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Illustration of a trash bin paired with a recycling bin">
+            <path d="M26 44 L52 36 L74 43 L48 51 Z" fill="#C3DCCB" stroke="#2F4A3A" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M26 44 L48 51 L48 118 L26 111 Z" fill="#DCEBE1" stroke="#2F4A3A" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M48 51 L74 43 L74 110 L48 118 Z" fill="#B5D2BF" stroke="#2F4A3A" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M30 56 L44 61 L44 74 L30 69 Z" fill="none" stroke="#2F4A3A" stroke-width="1"></path>
+            <path d="M34 66 c2 -6 6 -6 6 0" fill="none" stroke="#2F4A3A" stroke-width="1"></path>
+            <path d="M62 58 L96 47 L122 56 L88 67 Z" fill="#C3DCCB" stroke="#2F4A3A" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M62 58 L88 67 L88 134 L62 125 Z" fill="#DCEBE1" stroke="#2F4A3A" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M88 67 L122 56 L122 123 L88 134 Z" fill="#B5D2BF" stroke="#2F4A3A" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M95 72 L115 65 L115 74 L95 81 Z" fill="#2F4A3A"></path>
+            <circle cx="105" cy="100" r="7" fill="none" stroke="#2F4A3A" stroke-width="1.2"></circle>
+            <path d="M102 100 l2 -3 l2 3 M107 102 l-2 2 l-2 -2" fill="none" stroke="#2F4A3A" stroke-width="1"></path>
+            <path d="M18 120 L28 117 M124 132 L136 128" stroke="#8FAE9A" stroke-width="1"></path>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="All stations" style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 10px; overflow: hidden">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 24px">
+        <div style="display: flex; align-items: center; gap: 10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3D3D3D" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 13l9 5 9-5"></path><path d="M3 17.5l9 5 9-5"></path></svg>
+          <h2 style="margin: 0; font-size: 20px">All Stations</h2>
+        </div>
+        <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: #EDEDED; color: #3D3D3D; border: 1px solid #D4D4CF">4 stations</span>
+      </div>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; border-collapse: collapse; min-width: 960px; font-size: 14px">
+          <thead>
+            <tr style="text-align: left; background: #F7F7F5; color: #555555; font-size: 12px; letter-spacing: 0.06em">
+              <th style="padding: 12px 24px; border-top: 1px solid #E5E5E1; border-bottom: 1px solid #E5E5E1; font-weight: 600">STATION</th>
+              <th style="padding: 12px; border-top: 1px solid #E5E5E1; border-bottom: 1px solid #E5E5E1; font-weight: 600">SENSOR THIS WEEK (COUNT)</th>
+              <th style="padding: 12px; border-top: 1px solid #E5E5E1; border-bottom: 1px solid #E5E5E1; font-weight: 600">LATEST AUDIT (WEIGHT)</th>
+              <th style="padding: 12px; border-top: 1px solid #E5E5E1; border-bottom: 1px solid #E5E5E1; font-weight: 600">STATUS</th>
+              <th style="padding: 12px 24px; border-top: 1px solid #E5E5E1; border-bottom: 1px solid #E5E5E1"><span style="position: absolute; left: -9999px">Action</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px 24px; border-bottom: 1px solid #EAEAE6"><div style="display: flex; align-items: center; gap: 14px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 6px; background: #EEF3FC; border: 1px solid #9DB6E8; color: #163A87; display: inline-flex; align-items: center; justify-content: center; font-weight: 700">A</span><span><strong style="font-size: 15px">Curry Student Center</strong><br><span style="color: #555555; font-size: 13px">Pilot station</span></span></div></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-block; padding: 2px 8px; border: 1px dashed #6B6B6B; border-radius: 4px; font-weight: 600; font-size: 13px">38% wrong bin</span><br><span style="color: #555555; font-size: 13px">412 items · 7% uncertain</span></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-block; padding: 2px 8px; border: 2px solid #1F1F1F; border-radius: 4px; font-weight: 600; font-size: 13px">46% contaminated</span><br><span style="color: #555555; font-size: 13px">Nov 1 · 31 kg sampled</span></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #E3EBFA; color: #163A87"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#163A87" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Needs a decision</span></td>
+              <td style="padding: 16px 24px; border-bottom: 1px solid #EAEAE6"><a href="StationDetail.dc.html" style="font-weight: 600; text-decoration: none; white-space: nowrap">Open →</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 16px 24px; border-bottom: 1px solid #EAEAE6"><div style="display: flex; align-items: center; gap: 14px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 6px; background: #FDF1E3; border: 1px solid #E5C08F; color: #7A3A05; display: inline-flex; align-items: center; justify-content: center; font-weight: 700">B</span><span><strong style="font-size: 15px">Snell Library</strong><br><span style="color: #555555; font-size: 13px">Pilot station · changed Sep 16</span></span></div></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-block; padding: 2px 8px; border: 1px dashed #6B6B6B; border-radius: 4px; font-weight: 600; font-size: 13px">Withheld</span><br><span style="color: #555555; font-size: 13px">23% of readings uncertain</span></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-block; padding: 2px 8px; border: 2px solid #1F1F1F; border-radius: 4px; font-weight: 600; font-size: 13px">40% contaminated</span><br><span style="color: #555555; font-size: 13px">Nov 1 · 34 kg sampled</span></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #FDEBD8; color: #7A3A05"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A3A05" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"></path><path d="M12 10v4M12 17.5v.5"></path></svg>Data quality low</span></td>
+              <td style="padding: 16px 24px; border-bottom: 1px solid #EAEAE6"><a href="LowConfidence.dc.html" style="font-weight: 600; text-decoration: none; white-space: nowrap">Open →</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 16px 24px; border-bottom: 1px solid #EAEAE6"><div style="display: flex; align-items: center; gap: 14px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 6px; background: #EEF5F0; border: 1px solid #A9C9B5; color: #1F4D34; display: inline-flex; align-items: center; justify-content: center; font-weight: 700">C</span><span><strong style="font-size: 15px">Centennial Walkway</strong><br><span style="color: #555555; font-size: 13px">Pilot station · changed Sep 15</span></span></div></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-block; padding: 2px 8px; border: 1px dashed #6B6B6B; border-radius: 4px; font-weight: 600; font-size: 13px">19% wrong bin</span><br><span style="color: #555555; font-size: 13px">287 items · 6% uncertain</span></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-block; padding: 2px 8px; border: 2px solid #1F1F1F; border-radius: 4px; font-weight: 600; font-size: 13px">31% contaminated</span><br><span style="color: #555555; font-size: 13px">Nov 1 · 38 kg sampled</span></td>
+              <td style="padding: 16px 12px; border-bottom: 1px solid #EAEAE6"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #E6F0EA; color: #1F4D34"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1F4D34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Result ready</span></td>
+              <td style="padding: 16px 24px; border-bottom: 1px solid #EAEAE6"><a href="ResultImproved.dc.html" style="font-weight: 600; text-decoration: none; white-space: nowrap">Open →</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 16px 24px"><div style="display: flex; align-items: center; gap: 14px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 6px; background: #F0F0EE; border: 1px solid #C8C8C4; color: #333333; display: inline-flex; align-items: center; justify-content: center; font-weight: 700">D</span><span><strong style="font-size: 15px">ISEC Walkway</strong><br><span style="color: #555555; font-size: 13px">Comparison station · no changes</span></span></div></td>
+              <td style="padding: 16px 12px"><span style="display: inline-block; padding: 2px 8px; border: 1px dashed #6B6B6B; border-radius: 4px; font-weight: 600; font-size: 13px">No data</span><br><span style="color: #555555; font-size: 13px">Offline since Nov 18 · not 0%</span></td>
+              <td style="padding: 16px 12px"><span style="display: inline-block; padding: 2px 8px; border: 2px solid #1F1F1F; border-radius: 4px; font-weight: 600; font-size: 13px">43% contaminated</span><br><span style="color: #555555; font-size: 13px">Nov 1 · 36 kg sampled</span></td>
+              <td style="padding: 16px 12px"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #F0F0EE; color: #333333; border: 1px dashed #6B6B6B"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0M12 19h.01M3 3l18 18"></path></svg>Sensor offline</span></td>
+              <td style="padding: 16px 24px"><a href="Offline.dc.html" style="font-weight: 600; text-decoration: none; white-space: nowrap">Open →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-label="Earlier change" style="background: #EEF3FC; border: 1px solid #C9D6F0; border-radius: 10px; padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between">
+      <p style="margin: 0; display: flex; align-items: center; gap: 12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F4FB8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><span><strong>Station B:</strong> the Sep 16 sign change has a result. It did not lower contamination.</span></p>
+      <a href="ResultNoChange.dc.html" style="font-weight: 600; text-decoration: none; white-space: nowrap">View result →</a>
+    </section>
+
+    <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555555"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555555" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span><strong style="color: #3D3D3D">Next audit: Tue Dec 1.</strong> Weekly view updated every Monday for the week Sun–Sat. Sensor numbers help you decide where to look. Only weighed audits count as results.</span></p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { range: 'week', calOpen: false }; }
+  renderVals() {
+    const defs = [
+      { id: 'week', name: 'Latest week', dates: 'Sun Nov 15 – Sat Nov 21', label: 'Sun Nov 15 – Sat Nov 21, 2026', heading: 'This week at pilot stations', sub: '1 station needs a decision. 1 result is ready.' },
+      { id: 'last', name: 'Week before', dates: 'Sun Nov 8 – Sat Nov 14', label: 'Sun Nov 8 – Sat Nov 14, 2026', heading: 'Last week at pilot stations', sub: 'Prototype note: the numbers below are sample data for Nov 15–21 only.' },
+      { id: 'month', name: 'This month', dates: 'Nov 1–30', label: 'November 1–30, 2026', heading: 'November at pilot stations', sub: 'Prototype note: the numbers below are sample data for Nov 15–21 only.' },
+      { id: 'pilot', name: 'Pilot so far', dates: 'Aug 30 – Nov 21', label: 'Sun Aug 30 – Sat Nov 21, 2026', heading: 'The pilot so far', sub: 'Prototype note: the numbers below are sample data for Nov 15–21 only.' }
+    ];
+    const cur = defs.find((d) => d.id === this.state.range);
+    const ranges = defs.map((d) => ({
+      name: d.name, dates: d.dates,
+      selected: d.id === this.state.range ? 'true' : 'false',
+      bg: d.id === this.state.range ? '#E3EBFA' : '#FFFFFF',
+      weight: d.id === this.state.range ? 600 : 400,
+      pick: () => this.setState({ range: d.id, calOpen: false })
+    }));
+    return {
+      ranges, rangeLabel: cur.label, heading: cur.heading, subline: cur.sub,
+      calOpen: this.state.calOpen,
+      toggleCal: () => this.setState({ calOpen: !this.state.calOpen })
+    };
+  }
+}
+</script>
+</body>
+</html>

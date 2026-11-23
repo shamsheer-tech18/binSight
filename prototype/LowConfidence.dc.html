@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Station B data quality low</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" style="text-decoration: none">Overview</a>
+      <a href="LogChange.dc.html" style="text-decoration: none">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <a href="Main.dc.html" style="font-size: 14px">← Back to overview</a>
+    <div>
+      <p style="margin: 0; font-size: 13px; color: #555555">Pilot station · outdoor pair (recycling + trash)</p>
+      <h1 style="margin: 4px 0 0; font-size: 28px">Station B · Snell Library</h1>
+    </div>
+
+    <section role="status" style="background: #FFFFFF; border: 2px solid #8A5A00; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; color: #7A3A05">DATA QUALITY LOW THIS WEEK</p>
+      <h2 style="margin: 0; font-size: 20px">The sensor wasn't sure about 23% of items. The limit is 15%.</h2>
+      <p style="margin: 0">So we're <strong>not showing sensor numbers</strong> for Station B this week, and <strong>no change is recommended</strong>. Guessing here could send you to the wrong fix.</p>
+    </section>
+
+    <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 17px">Why the sensor was unsure</h2>
+        <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px">
+          <li><strong>Low sun glare, 3–5 pm:</strong> 58% of uncertain readings</li>
+          <li><strong>Items stacked on top of each other:</strong> 27%</li>
+          <li><strong>Other:</strong> 15%</li>
+        </ul>
+        <p style="margin: 0; font-size: 13px; color: #555555">Uncertain readings are never counted as mistakes. Hard-item check on Nov 1: 81% correct (needs 90%).</p>
+      </div>
+      <div style="background: #FFFFFF; border: 2px solid #1F1F1F; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Still valid · Audit · weight · Nov 1</p>
+        <p style="margin: 0; font-size: 34px; font-weight: 700">40%</p>
+        <p style="margin: 0; color: #3D3D3D">of recycling by weight was contaminated (34 kg sampled). Audits don't depend on the sensor.</p>
+      </div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 17px">What you can do</h2>
+      <sc-if value="{{notAsked}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <button type="button" onClick="{{ask}}" style="min-height: 44px; padding: 0 20px; border-radius: 6px; border: 0; background: #1F4FB8; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Request a quick audit check</button>
+          <button type="button" onClick="{{recal}}" style="min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #1F4FB8; background: #FFFFFF; color: #1F4FB8; font-weight: 600; font-size: 14px; cursor: pointer">Ask BinSight team to fix the glare</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{asked}}" hint-placeholder-val="{{ false }}">
+        <p role="status" style="margin: 0; font-weight: 600; color: #1F4D34">{{askedMsg}}</p>
+        <p style="margin: 0; font-size: 14px; color: #3D3D3D">Station B shows sensor numbers again once a week stays under 15% uncertain and the next check passes.</p>
+      </sc-if>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between">
+      <p style="margin: 0">The Sep 16 sign change at Station B has a result from weighed audits.</p>
+      <a href="ResultNoChange.dc.html">See the result</a>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { msg: '' }; }
+  renderVals() {
+    const m = this.state.msg;
+    return {
+      asked: !!m, notAsked: !m, askedMsg: m,
+      ask: () => this.setState({ msg: 'Audit check requested for Tue Nov 24, assigned to the SGA hand-sort team.' }),
+      recal: () => this.setState({ msg: 'Request sent: adjust the camera shield for afternoon sun, then re-run the accuracy check.' })
+    };
+  }
+}
+</script>
+</body>
+</html>

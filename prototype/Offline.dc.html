@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Station D offline</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" style="text-decoration: none">Overview</a>
+      <a href="LogChange.dc.html" style="text-decoration: none">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <a href="Main.dc.html" style="font-size: 14px">← Back to overview</a>
+    <div>
+      <p style="margin: 0; font-size: 13px; color: #555555">Comparison station · no changes are made here</p>
+      <h1 style="margin: 4px 0 0; font-size: 28px">Station D · ISEC Walkway</h1>
+    </div>
+
+    <section role="status" style="background: #FFFFFF; border: 2px dashed #6B6B6B; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; color: #333333">SENSOR OFFLINE · NO DATA</p>
+      <h2 style="margin: 0; font-size: 20px">No readings since Wed Nov 18, 2:14 pm (5 days)</h2>
+      <p style="margin: 0">This week shows <strong>“no data”, not 0%</strong>. A gap is never shown as a clean week.</p>
+    </section>
+
+    <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">Is data lost?</p>
+        <p style="margin: 6px 0 0">Probably not. The module stores up to 7 days of readings while it has power. If it reconnects by <strong>Nov 25</strong>, everything uploads.</p>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">What still works</p>
+        <p style="margin: 6px 0 0">Audit results. D's Nov 1 audit (43%, 36 kg) is valid, so before-and-after comparisons for Stations A and C still hold.</p>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 18px">
+        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555555">What's paused</p>
+        <p style="margin: 6px 0 0">D's weekly sensor trend. Missing days are never filled in with estimates.</p>
+      </div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 17px">Likely cause and next step</h2>
+      <p style="margin: 0">Last signal strength was weak, and the battery was at 18%. Check the power and the lid seal.</p>
+      <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{send}}" style="align-self: flex-start; min-height: 44px; padding: 0 20px; border-radius: 6px; border: 0; background: #1F4FB8; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Ask Grounds to check the station</button>
+      </sc-if>
+      <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+        <p role="status" style="margin: 0; font-weight: 600; color: #1F4D34">Sent to Grounds · area supervisor. You'll see “Back online” here when readings resume.</p>
+      </sc-if>
+      <p style="margin: 0; font-size: 13px; color: #555555">Automatic outage alerts come in Release 2. In the pilot, offline stations show up here and on the Overview.</p>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sent: false }; }
+  renderVals() {
+    return { sent: this.state.sent, notSent: !this.state.sent, send: () => this.setState({ sent: true }) };
+  }
+}
+</script>
+</body>
+</html>

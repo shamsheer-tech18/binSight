@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Privacy notice at the bin</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+</style>
+</helmet>
+<div style="width: 600px; height: 800px; box-sizing: border-box; padding: 44px; background: #FFFFFF; border: 6px solid #1F1F1F; display: flex; flex-direction: column; gap: 26px">
+  <div style="display: flex; align-items: center; gap: 16px">
+    <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Camera pointing down into a bin"><rect x="10" y="22" width="44" height="34" rx="3" fill="none" stroke="#1F1F1F" stroke-width="4"></rect><rect x="22" y="6" width="20" height="10" rx="2" fill="#1F1F1F"></rect><path d="M32 16 L22 30 M32 16 L42 30" stroke="#1F1F1F" stroke-width="3" fill="none"></path></svg>
+    <p style="margin: 0; font-size: 18px; font-weight: 600">Notice</p>
+  </div>
+  <h1 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 700">This bin looks at what goes in.<br>It never records you.</h1>
+  <p style="margin: 0; font-size: 22px; line-height: 1.35">A small camera inside the bin sees only the items you throw away. It helps Northeastern find out which items end up in the wrong bin.</p>
+  <ul style="margin: 0; padding-left: 26px; font-size: 20px; line-height: 1.4; display: flex; flex-direction: column; gap: 8px">
+    <li>No faces, no people, no sound</li>
+    <li>Images of bin contents deleted within 7 days</li>
+    <li>You don't need to do anything differently</li>
+  </ul>
+  <div style="margin-top: auto; display: flex; gap: 20px; align-items: center; border-top: 2px solid #1F1F1F; padding-top: 20px">
+    <div role="img" aria-label="QR code placeholder" style="width: 96px; height: 96px; border: 2px dashed #6B6B6B; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #555555; text-align: center">[QR]</div>
+    <div style="font-size: 18px; line-height: 1.35">
+      <p style="margin: 0; font-weight: 600">Questions or concerns?</p>
+      <p style="margin: 2px 0 0">[CONTACT EMAIL] · Materials &amp; Recycling</p>
+      <p style="margin: 2px 0 0; font-size: 15px; color: #3D3D3D">Station A · Curry Student Center</p>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":600,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

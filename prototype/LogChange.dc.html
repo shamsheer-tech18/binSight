@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BinSight · Log a change</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F4F4F2;color:#1F1F1F}
+a{color:#1F4FB8}a:hover{color:#163A87}
+.btn,.btn:hover{color:#fff}
+button,input,select{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 1100px; font-size: 15px; line-height: 1.45">
+  <header style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 14px 32px; background: #FFFFFF; border-bottom: 1px solid #D4D4CF">
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center">
+      <span style="font-weight: 700; font-size: 18px; margin-right: 8px">BinSight</span>
+      <a href="Main.dc.html" style="text-decoration: none">Overview</a>
+      <a href="LogChange.dc.html" aria-current="page" style="font-weight: 600; text-decoration: none; color: #1F1F1F; border-bottom: 2px solid #1F1F1F; padding-bottom: 2px">Change log</a>
+      <a href="Summary.dc.html" style="text-decoration: none">Summary</a>
+    </nav>
+    <span style="font-size: 12px; padding: 4px 10px; border: 1px dashed #8A5A00; background: #FFF4D6; color: #4D3300; border-radius: 4px">Prototype · sample data · AI output simulated</span>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <a href="Recommendation.dc.html" style="font-size: 14px">← Back to recommendation</a>
+    <div>
+      <p style="margin: 0; font-size: 13px; color: #555555">Change log</p>
+      <h1 style="margin: 4px 0 0; font-size: 28px">Log the change you made</h1>
+      <p style="margin: 6px 0 0; color: #3D3D3D">Logging starts the measurement. Results come only from weighed audits after this date.</p>
+    </div>
+
+    <sc-if value="{{showForm}}" hint-placeholder-val="{{ true }}">
+      <section style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 22px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; max-width: 880px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="st" style="font-weight: 600">Station</label>
+          <select id="st" value="{{station}}" onChange="{{onStation}}" style="min-height: 44px; padding: 0 8px; border: 1px solid #8A8A8A; border-radius: 6px; font-size: 15px">
+            <option value="A">A · Curry Student Center</option>
+            <option value="B">B · Snell Library</option>
+            <option value="C">C · Centennial Walkway</option>
+          </select>
+          <span style="font-size: 12px; color: #555555">Station D is the comparison station. Changes there are blocked.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="ty" style="font-weight: 600">Type of change</label>
+          <select id="ty" style="min-height: 44px; padding: 0 8px; border: 1px solid #8A8A8A; border-radius: 6px; font-size: 15px">
+            <option>Pairing: added a matching bin</option>
+            <option>Placement: moved a bin</option>
+            <option>Order: swapped bin order</option>
+            <option>Sign: new or changed sign</option>
+          </select>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="dt" style="font-weight: 600">Date the change was made</label>
+          <input id="dt" type="date" value="{{date}}" onChange="{{onDate}}" style="min-height: 44px; padding: 0 8px; border: 1px solid {{dateBorder}}; border-radius: 6px; font-size: 15px">
+          <sc-if value="{{dateError}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 13px; color: #8A2A00; font-weight: 600">The date can't be in the future. Log the change after it's made.</span></sc-if>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="ow" style="font-weight: 600">Owner</label>
+          <input id="ow" type="text" value="Grounds · area supervisor" style="min-height: 44px; padding: 0 8px; border: 1px solid #8A8A8A; border-radius: 6px; font-size: 15px">
+        </div>
+        <div style="grid-column: 1 / -1; display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+          <button type="button" onClick="{{submit}}" style="min-height: 44px; padding: 0 22px; border-radius: 6px; border: 0; background: #1F4FB8; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Log change</button>
+          <span style="font-size: 13px; color: #555555">Linked to: “Put a trash bin right next to the Big Belly” (recommended Nov 21)</span>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{showWarn}}" hint-placeholder-val="{{ false }}">
+      <section role="alert" style="background: #FFFFFF; border: 2px solid #8A5A00; border-radius: 8px; padding: 22px; max-width: 880px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 18px">Station C already has a change being measured</h2>
+        <p style="margin: 0">A trash bin was paired there on Sep 15. If you log a second change now, BinSight can't tell which change caused any result. Both results will be marked <strong>“can't be attributed”</strong>.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <button type="button" onClick="{{back}}" style="min-height: 44px; padding: 0 20px; border-radius: 6px; border: 0; background: #1F4FB8; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Pick a different station</button>
+          <button type="button" onClick="{{forceLog}}" style="min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #8A8A8A; background: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer">Log anyway</button>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{showDone}}" hint-placeholder-val="{{ false }}">
+      <section style="background: #FFFFFF; border: 2px solid #2F6B4A; border-radius: 8px; padding: 22px; max-width: 880px; display: flex; flex-direction: column; gap: 14px">
+        <p style="margin: 0; font-size: 12px; font-weight: 600; color: #1F4D34">CHANGE LOGGED · NOW MEASURING</p>
+        <h2 style="margin: 0; font-size: 20px">Station {{station}}: change logged for {{date}}</h2>
+        <sc-if value="{{forced}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; color: #7A3A05; font-weight: 600">Marked “can't be attributed”: another change is still being measured here.</p></sc-if>
+        <ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px">
+          <li><strong>Waiting for audits.</strong> Sensor trends update weekly, but they are not the result.</li>
+          <li><strong>Follow-up audit 1:</strong> Tue Dec 1 (monthly audit), at this station and comparison Station D.</li>
+          <li><strong>Follow-up audit 2:</strong> Fri Jan 1 (monthly audit). Verdict after both.</li>
+        </ol>
+        <p style="margin: 0; font-size: 13px; color: #555555">Open question for the pilot: how long to wait before judging a change (PRD Q-10).</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <a class="btn" href="ResultImproved.dc.html" style="padding: 12px 20px; border-radius: 6px; background: #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">See a finished result (Station C)</a>
+          <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #1F4FB8; text-decoration: none; font-weight: 600; font-size: 14px">Back to overview</a>
+        </div>
+      </section>
+    </sc-if>
+
+    <section aria-label="Change history" style="background: #FFFFFF; border: 1px solid #D4D4CF; border-radius: 8px; padding: 8px 0 4px">
+      <h2 style="margin: 12px 20px 8px; font-size: 17px">Change history</h2>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; border-collapse: collapse; min-width: 820px; font-size: 14px">
+          <thead><tr style="text-align: left; color: #555555; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em">
+            <th style="padding: 10px 20px; border-bottom: 1px solid #D4D4CF">Date</th><th style="padding: 10px 12px; border-bottom: 1px solid #D4D4CF">Station</th><th style="padding: 10px 12px; border-bottom: 1px solid #D4D4CF">Change</th><th style="padding: 10px 12px; border-bottom: 1px solid #D4D4CF">Owner</th><th style="padding: 10px 20px; border-bottom: 1px solid #D4D4CF">Result</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding: 12px 20px; border-bottom: 1px solid #EAEAE6">Sep 15</td><td style="padding: 12px; border-bottom: 1px solid #EAEAE6">C</td><td style="padding: 12px; border-bottom: 1px solid #EAEAE6">Pairing: trash bin beside lone recycling bin</td><td style="padding: 12px; border-bottom: 1px solid #EAEAE6">Grounds</td><td style="padding: 12px 20px; border-bottom: 1px solid #EAEAE6"><a href="ResultImproved.dc.html">Improved, held at 2 audits</a></td></tr>
+            <tr><td style="padding: 12px 20px">Sep 16</td><td style="padding: 12px">B</td><td style="padding: 12px">Sign: top 3 problem items</td><td style="padding: 12px">Materials &amp; Recycling</td><td style="padding: 12px 20px"><a href="ResultNoChange.dc.html">No change</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { station: 'A', date: '2026-11-23', step: 'form', dateError: false, forced: false }; }
+  renderVals() {
+    const s = this.state;
+    return {
+      station: s.station, date: s.date, forced: s.forced,
+      dateError: s.dateError, dateBorder: s.dateError ? '#8A2A00' : '#8A8A8A',
+      showForm: s.step === 'form', showWarn: s.step === 'warn', showDone: s.step === 'done',
+      onStation: (e) => this.setState({ station: e.target.value }),
+      onDate: (e) => this.setState({ date: e.target.value, dateError: false }),
+      submit: () => {
+        if (s.date > '2026-11-23') { this.setState({ dateError: true }); return; }
+        if (s.station === 'C') { this.setState({ step: 'warn' }); return; }
+        this.setState({ step: 'done', forced: false });
+      },
+      back: () => this.setState({ step: 'form' }),
+      forceLog: () => this.setState({ step: 'done', forced: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "binsight-prototype",
+  "version": "0.8.0",
+  "private": true,
+  "description": "BinSight — clickable prototype for a campus recycling lead",
+  "scripts": {
+    "start": "npx --yes serve prototype -l 5173"
+  }
+}
