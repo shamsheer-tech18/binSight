@@ -4,6 +4,8 @@
 
 BinSight is a product concept for campus recycling. This repository holds the clickable prototype, its screenshots, a walkthrough PDF and the full product understanding document.
 
+**▶ Live prototype: https://binsightneu.netlify.app** — best viewed on a laptop.
+
 ![Overview screen](docs/screens/01_overview.png)
 
 > **Status:** concept / prototype. All data is sample data. There is no backend and no real AI — the screens simulate what a pilot would show.
@@ -46,7 +48,9 @@ Full detail: [docs/product-understanding.md](docs/product-understanding.md).
 
 ## Run the prototype
 
-The screens are plain HTML files. Each one loads `prototype/support.js`, a small renderer, so no build step is needed.
+**Online:** https://binsightneu.netlify.app (auto-updates when `main` changes).
+
+**Locally:** The screens are plain HTML files. Each one loads `prototype/support.js`, a small renderer, so no build step is needed.
 
 **Option A — VS Code Live Server (easiest)**
 1. Open this folder in VS Code and install the recommended **Live Server** extension when prompted.
